@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101513">
+  <title>Neon Rally — World Tour</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <canvas id="scene" aria-label="Neon Rally 3D race scene"></canvas>
+    <div class="grain"></div>
+    <header class="topbar">
+      <button class="brand" data-screen="home"><span class="brand-mark">NR</span><span>NEON<span class="mint">RALLY</span><small>WORLD TOUR</small></span></button>
+      <div class="top-right"><div class="wallet"><span class="coin">◆</span><strong id="coins">1,250</strong><button class="plus" aria-label="Daily rewards" data-screen="rewards">+</button></div><button class="avatar" data-screen="profile" aria-label="Profile">✦</button></div>
+    </header>
+    <nav class="edge-nav" aria-label="Main navigation"><button class="nav-link active" data-screen="home"><span>⌂</span>HOME</button><button class="nav-link" data-screen="play"><span>▶</span>PLAY</button><button class="nav-link" data-screen="store"><span>▣</span>STORE</button></nav>
+    <section class="screen home-screen active" id="screen-home">
+      <div class="hero-copy"><div class="eyebrow"><i></i> SEASON 04 · SOLAR CIRCUIT</div><h1>CHASE<br>THE <em>HORIZON.</em></h1><p>One world. Infinite lines. Make every turn count.</p><div class="hero-actions"><button class="button primary" data-screen="play">START YOUR ENGINE <span>↗</span></button><button class="button ghost" data-screen="world">WORLD MAP <span>⌖</span></button></div></div>
+      <div class="home-bottom"><div class="daily-card"><div class="daily-icon">✧</div><div><strong>DAILY DROP</strong><small>Claim today's 150 credits</small></div><button id="dailyClaim" class="claim-btn">CLAIM <span>→</span></button></div><div class="rank-chip"><span class="rank-icon">♜</span><div><small>YOUR RANK</small><strong>BRONZE II <span>↑</span></strong></div><div class="rank-progress"><i></i></div></div></div>
+      <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">♫ <span>SOUND ON</span></button>
+    </section>
+    <section class="screen play-screen" id="screen-play">
+      <div class="screen-heading"><span class="eyebrow">PICK YOUR RIDE</span><h2>Choose a mode<span>.</span></h2><p>Every road has a story. Which one is yours?</p></div>
+      <div class="mode-grid">
+        <button class="mode-card race-card" data-mode="race"><span class="mode-index">01 / SOLO</span><span class="mode-symbol">◉</span><div><h3>Quick race</h3><p>Race the clock or take on 4 rival drivers.</p></div><span class="card-arrow">↗</span></button>
+        <button class="mode-card online-card" data-mode="online"><span class="mode-index">02 / ONLINE</span><span class="mode-symbol">⌁</span><div><h3>Online race</h3><p>Challenge the grid. Random or custom track.</p></div><span class="card-arrow">↗</span></button>
+        <button class="mode-card duel-card" data-mode="duel"><span class="mode-index">03 / DUEL</span><span class="mode-symbol">⚡</span><div><h3>Ghost duel</h3><p>Race a recorded rival. Don't let them pass.</p></div><span class="card-arrow">↗</span></button>
+      </div>
+      <div class="mode-footer"><span>✦ <b>WEEKEND EVENT</b> · PASS THE BIMBA</span><button class="text-button" data-screen="events">EVENT DETAILS ↗</button></div>
+    </section>
+    <section class="screen store-screen" id="screen-store">
+      <div class="screen-heading store-heading"><div><span class="eyebrow">THE PIT STOP</span><h2>Make it <em>yours.</em></h2><p>Fresh looks, faster machines. Earn credits on the track.</p></div><div class="store-balance"><span>◆</span><strong id="storeCoins">1,250</strong><small>CREDITS</small></div></div>
+      <div class="store-tabs"><button class="store-tab selected" data-category="cars">CARS <span>04</span></button><button class="store-tab" data-category="driver">DRIVER FITS <span>03</span></button><button class="store-tab" data-category="wraps">CAR WRAPS <span>03</span></button></div>
+      <div class="item-grid" id="itemGrid"></div>
+    </section>
+    <section class="screen world-screen" id="screen-world">
+      <div class="screen-heading"><span class="eyebrow">THE WORLD IS YOURS</span><h2>World <em>tour.</em></h2><p>Unlock new routes. Find your next favorite ride.</p></div>
+      <div class="world-map" id="worldMap"></div><div class="world-legend"><span>● COMPLETE</span><span>◉ CURRENT</span><span>○ LOCKED</span><button class="button primary" data-screen="play">RACE HERE ↗</button></div>
+    </section>
+    <section class="screen rewards-screen" id="screen-rewards">
+      <div class="screen-heading"><span class="eyebrow">SHOW UP. CASH IN.</span><h2>Daily <em>rewards.</em></h2><p>Come back every day and stack your credits.</p></div><div class="reward-days" id="rewardDays"></div><div class="task-panel"><div class="task-title"><div><span class="eyebrow">DAILY CHALLENGES</span><h3>Earn on the road</h3></div><span class="reset">RESETS IN 08:42:16</span></div><div class="task-list" id="taskList"></div></div>
+    </section>
+    <section class="screen events-screen" id="screen-events">
+      <div class="screen-heading"><span class="eyebrow">LIMITED TIME · 02D 14H</span><h2>Pass the <em>Bimba.</em></h2><p>Hold onto the Bimba and hand it off before the 30-second timer runs out.</p></div><div class="event-banner"><div class="event-art">B!</div><div><span class="eyebrow">TAG MODE</span><h3>You're it. Now pass it.</h3><p>Each pass earns 25 credits. Survive the whole round for a bonus.</p><button class="button primary" id="eventStart">JOIN THE EVENT ↗</button></div></div>
+    </section>
+    <section class="screen profile-screen" id="screen-profile">
+      <div class="screen-heading"><span class="eyebrow">DRIVER PROFILE</span><h2>Rookie <em>racer.</em></h2><p>Your legend starts on the starting line.</p></div><div class="profile-stats"><div><small>RACES</small><strong id="statRaces">0</strong></div><div><small>WINS</small><strong id="statWins">0</strong></div><div><small>BEST PLACE</small><strong id="statBest">—</strong></div></div><button class="button ghost" data-screen="rewards">DAILY REWARDS ↗</button>
+    </section>
+    <section class="screen race-screen" id="screen-race">
+      <div class="race-hud"><button class="back-button" id="raceExit">← <span>EXIT</span></button><div class="race-info"><span id="raceMode">QUICK RACE</span><strong id="raceMap">SUNSET COAST</strong></div><div class="race-lap"><strong id="racePosition">1<span>/5</span></strong><small>POSITION</small></div><div class="race-timer" id="raceTimer">00:00.0</div></div>
+      <div class="race-toast" id="raceToast">3</div><div class="race-message" id="raceMessage"></div>
+      <div class="race-bottom"><div class="speed-box"><strong id="speed">000</strong><small>KM/H</small><div class="speed-bar"><i id="speedBar"></i></div></div><div class="race-progress"><span>START</span><i><b id="progressFill"></b></i><span>FINISH</span></div><div class="race-hint">DRIFT <b>HOLD</b> <span>◆</span> BOOST <b>READY</b></div></div>
+      <div class="touch-controls"><button id="leftControl" aria-label="Steer left">‹</button><button id="driftControl" aria-label="Drift">DRIFT</button><button id="rightControl" aria-label="Steer right">›</button><button id="boostControl" aria-label="Boost">BOOST<br>↗</button></div>
+      <div class="finish-panel" id="finishPanel"><span class="eyebrow">RACE COMPLETE</span><h2 id="finishTitle">Nice driving.</h2><p id="finishCopy"></p><div class="finish-reward">◆ <strong id="finishCoins">+100</strong><span>CREDITS EARNED</span></div><button class="button primary" id="raceAgain">RACE AGAIN ↗</button><button class="text-button" id="finishHome">BACK TO GARAGE</button></div>
+    </section>
+    <div class="modal-backdrop" id="modalBackdrop"><div class="setup-modal"><button class="modal-close" id="modalClose">×</button><span class="eyebrow" id="setupEyebrow">QUICK RACE</span><h2 id="setupTitle">Set the scene<span>.</span></h2><p id="setupSubtitle">Choose your track and your rivals.</p><label>TRACK<select id="trackSelect"><option>Sunset Coast</option><option>Neon City</option><option>Alpine Pass</option><option>Random route</option></select></label><div class="setup-row"><label>RIVALS<select id="rivalSelect"><option value="bots">4 bots</option><option value="solo">Solo time trial</option></select></label><label>EVENT<select id="eventSelect"><option value="none">Standard race</option><option value="bimba">Pass the Bimba</option><option value="random">Surprise me</option></select></label></div><button class="button primary launch-button" id="launchRace">START RACE ↗</button><small class="setup-note" id="setupNote">Offline · Bots will challenge your line</small></div></div>
+    <div class="toast" id="toast"></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
